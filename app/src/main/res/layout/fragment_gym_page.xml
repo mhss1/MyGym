@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.GymPageFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/gym_info_card"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="18dp"
+            android:background="@drawable/gradient_background">
+
+            <TextView
+                android:id="@+id/gym_title_tv"
+                android:textSize="28sp"
+                android:layout_margin="12dp"
+                android:textColor="?colorOnBackground"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Test Gym title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/gym_members_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?colorOnBackground"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/gym_title_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/gym_title_tv"
+                app:layout_constraintTop_toTopOf="@id/gym_title_tv"
+                app:layout_constraintHorizontal_bias="0.9"
+                tools:text="12 members" />
+
+            <TextView
+                android:id="@+id/gym_owner"
+                tools:text="Owner: Mohamed hassan"
+                android:layout_marginTop="12dp"
+                android:textSize="18sp"
+                android:textColor="?colorOnBackground"
+                app:layout_constraintTop_toBottomOf="@id/gym_title_tv"
+                app:layout_constraintStart_toStartOf="@id/gym_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/gym_join_leave_button"
+                tools:text="Join"
+                android:backgroundTint="@color/blue"
+                app:cornerRadius="999dp"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toTopOf="@id/gym_owner"
+                app:layout_constraintBottom_toBottomOf="@id/gym_owner"
+                app:layout_constraintEnd_toEndOf="@id/gym_members_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/gym_members_tv"
+        android:layout_margin="12dp"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/gym_info_card"
+        android:text="@string/gym_members"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/gym_members_card"
+        app:layout_constraintTop_toBottomOf="@id/gym_members_tv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="@color/gray"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="8dp"
+        android:layout_margin="12dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/members_rec"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/rec_item"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

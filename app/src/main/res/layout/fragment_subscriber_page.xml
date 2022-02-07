@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.SubscriberPageFragment">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/user_info_card"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="18dp"
+            android:background="@drawable/gradient_background">
+
+            <TextView
+                android:id="@+id/user_name_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:textColor="?colorOnBackground"
+                android:textSize="28sp"
+                app:layout_constraintEnd_toStartOf="@+id/remove_btn"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Mohamed" />
+
+            <TextView
+                android:id="@+id/sub_end"
+                tools:text="Subscription ends : 02/02/2022"
+                android:layout_marginTop="12dp"
+                android:textSize="18sp"
+                android:textColor="?colorOnBackground"
+                app:layout_constraintTop_toBottomOf="@id/user_name_tv"
+                app:layout_constraintStart_toStartOf="@id/user_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/remove_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="107dp"
+                android:backgroundTint="@color/red"
+                android:text="@string/remove"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:cornerRadius="999dp"
+                app:layout_constraintBottom_toBottomOf="@+id/user_name_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/user_name_tv" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/reactivate_btn"
+                android:text="@string/reactivate"
+                android:backgroundTint="@color/blue"
+                app:cornerRadius="999dp"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/sub_end"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/subscriber_program"
+        android:layout_margin="12dp"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/user_info_card"
+        android:text="@string/sub_program"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sub_program_card"
+        app:layout_constraintTop_toBottomOf="@id/subscriber_program"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="@color/gray"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="8dp"
+        android:layout_margin="12dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/add_exercise_tv"
+                android:text="@string/add_exercise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_margin="16dp"
+                />
+
+            <ImageButton
+                android:id="@+id/add_exercise_btn"
+                android:src="@drawable/add_ic"
+                app:layout_constraintStart_toEndOf="@id/add_exercise_tv"
+                app:layout_constraintTop_toTopOf="@id/add_exercise_tv"
+                app:layout_constraintBottom_toBottomOf="@id/add_exercise_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.9"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/add_exercise" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/program_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                tools:listitem="@layout/rec_item"
+                app:layout_constraintTop_toBottomOf="@id/add_exercise_tv"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

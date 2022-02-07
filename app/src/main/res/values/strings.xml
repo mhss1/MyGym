@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">My Gym</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="do_not_have_account">Dont have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="empty_email">Email cannot be empty</string>
+    <string name="invalid_password_message">
+        Password must contain: \nAt least 8 characters\nAt least one letter\nAt least one number
+    </string>
+    <string name="email_verification_sent">Account verification sent to your email</string>
+    <string name="please_verify_email">Please verify your email first and try again</string>
+    <string name="error_login_or_signup">Error happened. Check your internet connection and try again later</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="join_gym">Join a gym</string>
+    <string name="create_manage_gym">Create and manage my own gym</string>
+    <string name="i_want_to">I want to:</string>
+    <string name="empty_password">Password can not be empty</string>
+    <string name="empty_name">First name can not be empty</string>
+    <string name="login_successful">Login Successful</string>
+    <string name="sign_out">Sign out</string>
+    <string name="settings">Settings</string>
+    <string name="welcome_message">Hello, %1$s!</string>
+    <string name="your_subscription">Your gym subscription</string>
+    <string name="your_subscription_is">Your Subscription is:</string>
+    <string name="active">Active</string>
+    <string name="search">Search</string>
+    <string name="could_not_update_data">Couldn\'t update your data</string>
+    <string name="no_gym">You are not subscribed to any gym yet. click to find a Gym.</string>
+    <string name="inactive">Inactive</string>
+    <string name="sub_ends_in">Subscription ends: \n %1$s</string>
+    <string name="your_gym">Your Gym</string>
+    <string name="your_program">Your program today</string>
+    <string name="could_not_update_gym_data">Could not update gym data</string>
+    <string name="no_program_message">You don\'t have anything for today</string>
+    <string name="no_gyms_found">No Gyms found</string>
+    <string name="gym">Gym</string>
+    <string name="gym_members">Gym members</string>
+    <string name="request_sent">Join request sent successfully</string>
+    <string name="sub_canceled">Subscription canceled successfully</string>
+    <string name="join">Join</string>
+    <string name="leave_gym_first">You must leave your current gym first</string>
+    <string name="leave">Leave</string>
+    <string name="pending">Pending</string>
+    <string name="manage">Manage</string>
+    <string name="gym_subscribers">Gym subscribers</string>
+    <string name="no_subscribers">You don have any subscribers yet.</string>
+    <string name="view_more">View more</string>
+    <string name="join_requests">Join requests</string>
+    <string name="no_requests">No join requests</string>
+    <string name="gym_name">Gym name</string>
+    <string name="gym_name_empty">Gym name can not be empty</string>
+    <string name="remove">Remove</string>
+    <string name="accept">Accept</string>
+    <string name="owner">Owner: %1$s</string>
+    <string name="sub_program">Subscriber Program</string>
+    <string name="add_exercise">Add exercise</string>
+    <string name="reactivate">Reactivate subscription</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="exercise_name">Exercise name</string>
+    <string name="sets_hint">Sets (i.e., 4x12)</string>
+    <string name="complete_fields">Please complete all fields</string>
+    <string name="exercise_added" >Exercise added successfully</string>
+    <plurals name="n_members">
+        <item quantity="one">%d member</item>
+        <item quantity="other">%d members</item>
+    </plurals>
+
+
+
+</resources>

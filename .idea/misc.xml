@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/drawable/dots_ic.xml" value="0.1" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/drawable/gradient_background.xml" value="0.1" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/drawable/gradient_background_red.xml" value="0.1" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/layout/custom_exercise_dialog.xml" value="0.14457831325301204" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/layout/fragment_gym_page.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/layout/fragment_gym_search.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/layout/fragment_login.xml" value="0.18" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/layout/fragment_owner_home.xml" value="0.11121408711770157" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/layout/fragment_settings.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/layout/fragment_sign_up.xml" value="0.17" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/layout/fragment_subscriber_page.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/layout/fragment_user_home.xml" value="0.11121408711770157" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/layout/gym_request_item.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/layout/rec_item.xml" value="0.17" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/menu/home_menu.xml" value="0.1675213675213675" />
+        <entry key="..\:/Users/Mohamed/AndroidStudioProjects/MyGym/app/src/main/res/xml/settings_preferences.xml" value="0.1675213675213675" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
