@@ -3,6 +3,7 @@ package com.mhss.app.mygym.ui
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -15,9 +16,7 @@ import com.mhss.app.mygym.adapters.RequestsAdapter
 import com.mhss.app.mygym.adapters.SubsAdapter
 import com.mhss.app.mygym.data.User
 import com.mhss.app.mygym.databinding.FragmentOwnerHomeBinding
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -68,7 +67,7 @@ class OwnerHomeFragment : Fragment() {
         getRequests()
     }
 
-    private fun getRequests() = CoroutineScope(Dispatchers.IO).launch {
+    private fun getRequests() = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users")
             .whereEqualTo("gym", auth.currentUser!!.uid)
             .whereEqualTo("state", "pending")
@@ -85,7 +84,7 @@ class OwnerHomeFragment : Fragment() {
     }
 
 
-    private fun getSubscribers() = CoroutineScope(Dispatchers.IO).launch {
+    private fun getSubscribers() = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users")
             .whereEqualTo("gym", auth.currentUser!!.uid)
             .whereEqualTo("state", "active")
@@ -102,7 +101,7 @@ class OwnerHomeFragment : Fragment() {
     }
 
 
-    private fun setGymData() = CoroutineScope(Dispatchers.IO).launch {
+    private fun setGymData() = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("gyms")
             .document(auth.currentUser!!.uid)
             .get()
@@ -123,7 +122,7 @@ class OwnerHomeFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun acceptUser(uid: String) = CoroutineScope(Dispatchers.IO).launch {
+    private fun acceptUser(uid: String) = lifecycleScope.launch(Dispatchers.IO) {
         val calendar = Calendar.getInstance()
         calendar.add(Calendar.DAY_OF_YEAR, 29)
         val time = calendar.timeInMillis
@@ -133,7 +132,7 @@ class OwnerHomeFragment : Fragment() {
         getSubscribers()
     }
 
-    private fun removeUser(uid: String) = CoroutineScope(Dispatchers.IO).launch {
+    private fun removeUser(uid: String) = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users")
             .document(uid)
             .update(mapOf("gym" to "", "state" to "", "sub_end" to 0))

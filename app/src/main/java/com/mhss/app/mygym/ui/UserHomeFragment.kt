@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -20,7 +21,6 @@ import com.mhss.app.mygym.data.Exercise
 import com.mhss.app.mygym.data.Gym
 import com.mhss.app.mygym.data.User
 import com.mhss.app.mygym.databinding.FragmentUserHomeBinding
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -65,7 +65,7 @@ class UserHomeFragment : Fragment() {
 
     }
 
-    private fun getUserProgram() = CoroutineScope(Dispatchers.IO).launch {
+    private fun getUserProgram() = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users")
             .document(auth.currentUser!!.uid)
             .collection("program")
@@ -80,7 +80,7 @@ class UserHomeFragment : Fragment() {
             }
     }
 
-    private fun getUserData() = CoroutineScope(Dispatchers.IO).launch {
+    private fun getUserData() = lifecycleScope.launch(Dispatchers.IO) {
         withContext(Dispatchers.Main) {
             showProgressBar(true)
         }
@@ -93,7 +93,7 @@ class UserHomeFragment : Fragment() {
             }
     }
 
-    private fun setUserGym() = CoroutineScope(Dispatchers.IO).launch {
+    private fun setUserGym() = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("gyms").document(user.gym).get()
             .addOnSuccessListener { gymSnapshot ->
                 userGym = gymSnapshot.toObject()!!
@@ -161,7 +161,7 @@ class UserHomeFragment : Fragment() {
         return today.before(calender.time)
     }
 
-    private fun leaveGym() = CoroutineScope(Dispatchers.IO).launch {
+    private fun leaveGym() = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users")
             .document(user.id)
             .update(mapOf("gym" to "", "state" to ""))
@@ -173,7 +173,7 @@ class UserHomeFragment : Fragment() {
             }
     }
 
-    private fun deleteProgramData() = CoroutineScope(Dispatchers.IO).launch {
+    private fun deleteProgramData() = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users")
             .document(user.id)
             .collection("program")
@@ -186,7 +186,7 @@ class UserHomeFragment : Fragment() {
     }
 
     private fun deleteDocument(dId: String, itemId: String) =
-        CoroutineScope(Dispatchers.IO).launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             db.collection("users")
                 .document(dId)
                 .collection("program")

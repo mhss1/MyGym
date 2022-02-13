@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -14,7 +15,6 @@ import com.google.firebase.ktx.Firebase
 import com.mhss.app.mygym.data.Gym
 import com.mhss.app.mygym.adapters.GymsAdapter
 import com.mhss.app.mygym.databinding.FragmentGymSearchBinding
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -53,7 +53,7 @@ class GymSearchFragment : Fragment() {
         }
     }
 
-    private fun searchGym() = CoroutineScope(Dispatchers.IO).launch {
+    private fun searchGym() = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("gyms")
             .get()
             .addOnSuccessListener { result ->

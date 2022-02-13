@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mhss.app.mygym.R
 import com.mhss.app.mygym.data.User
 import com.mhss.app.mygym.databinding.CustomExerciseDialogBinding
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
@@ -69,7 +69,7 @@ class ExerciseDialog(private val user: User) : DialogFragment() {
         return calendar.timeInMillis
     }
 
-    private fun addExercise(data: HashMap<String, Any>) = CoroutineScope(Dispatchers.IO).launch {
+    private fun addExercise(data: HashMap<String, Any>) = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users")
             .document(user.id)
             .collection("program")

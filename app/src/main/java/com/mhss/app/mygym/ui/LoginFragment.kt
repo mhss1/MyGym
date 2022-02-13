@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import com.google.firebase.auth.FirebaseAuth
@@ -17,9 +18,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mhss.app.mygym.R
 import com.mhss.app.mygym.databinding.FragmentLoginBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 
 class LoginFragment : Fragment() {
@@ -78,8 +77,7 @@ class LoginFragment : Fragment() {
         setEmailError(null)
         setPasswordError(null)
 
-        CoroutineScope(Dispatchers.IO).launch {
-
+        lifecycleScope.launch(Dispatchers.IO) {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(requireActivity()) { task ->
                     if (task.isSuccessful) {
@@ -90,14 +88,12 @@ class LoginFragment : Fragment() {
                             showErrorMessage(true)
                             setErrorMessage(getString(R.string.please_verify_email))
                         }
-
                     } else {
                         showErrorMessage(true)
                         setErrorMessage(getString(R.string.error_login_or_signup))
                     }
                     showProgressBar(false)
                 }
-
         }
     }
 

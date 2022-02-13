@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import com.google.firebase.auth.FirebaseAuth
@@ -19,9 +20,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mhss.app.mygym.R
 import com.mhss.app.mygym.databinding.FragmentSignUpBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 const val USER_TYPE_SUB = "sub"
 const val USER_TYPE_OWNER = "owner"
@@ -104,16 +103,14 @@ class SignUpFragment : Fragment() {
         showProgressBar(true)
         showErrorMessage(false)
 
-        CoroutineScope(Dispatchers.IO).launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(requireActivity()) { task ->
                     if (task.isSuccessful) {
-
                         val profileUpdates = userProfileChangeRequest {
                             displayName = "$firstName $lastName"
                         }
                         updateUserProfile(profileUpdates, type, firstName, lastName)
-
                         saveUserType(type)
                     } else
                         showErrorMessage(true)
@@ -151,14 +148,13 @@ class SignUpFragment : Fragment() {
         binding.errorTv.visibility = if (show) View.VISIBLE else View.GONE
     }
 
-    private fun createGym(data: HashMap<String, Any>) = CoroutineScope(Dispatchers.IO).launch {
+    private fun createGym(data: HashMap<String, Any>) = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("gyms")
             .document(auth.currentUser!!.uid)
             .set(data)
     }
 
-    private fun setUserInfo(type: String, firstName: String, lastName: String) =
-        CoroutineScope(Dispatchers.IO).launch {
+    private fun setUserInfo(type: String, firstName: String, lastName: String) = lifecycleScope.launch(Dispatchers.IO) {
             val info = if (type == USER_TYPE_SUB)
                 hashMapOf(
                     "type" to type,
@@ -182,7 +178,7 @@ class SignUpFragment : Fragment() {
         type: String,
         firstName: String,
         lastName: String
-    ) = CoroutineScope(Dispatchers.IO).launch {
+    ) = lifecycleScope.launch(Dispatchers.IO) {
         auth.currentUser!!.updateProfile(profileUpdates)
             .addOnCompleteListener {
                 if (it.isSuccessful) {

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -17,7 +18,6 @@ import com.mhss.app.mygym.adapters.MembersAdapter
 import com.mhss.app.mygym.R
 import com.mhss.app.mygym.data.User
 import com.mhss.app.mygym.databinding.FragmentGymPageBinding
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -62,7 +62,7 @@ class GymPageFragment : Fragment() {
 
     }
 
-    private fun setGymMembers(id: String) = CoroutineScope(Dispatchers.IO).launch {
+    private fun setGymMembers(id: String) = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users")
             .whereEqualTo("gym", id)
             .whereEqualTo("state", "active")
@@ -87,7 +87,7 @@ class GymPageFragment : Fragment() {
     private fun toast(text: String) =
         Toast.makeText(requireContext(), text, Toast.LENGTH_LONG).show()
 
-    private fun leaveGym() = CoroutineScope(Dispatchers.IO).launch {
+    private fun leaveGym() = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users").document(auth.currentUser!!.uid)
             .update(mapOf("gym" to "", "state" to ""))
             .addOnSuccessListener {
@@ -97,7 +97,7 @@ class GymPageFragment : Fragment() {
             }
     }
 
-    private fun requestGymJoin(gymId: String) = CoroutineScope(Dispatchers.IO).launch {
+    private fun requestGymJoin(gymId: String) = lifecycleScope.launch(Dispatchers.IO) {
         val data = mapOf("gym" to gymId, "state" to "pending")
         db.collection("users").document(UserHomeFragment.user.id).update(data)
             .addOnSuccessListener {

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.firestore.FirebaseFirestore
@@ -15,7 +16,6 @@ import com.mhss.app.mygym.data.Exercise
 import com.mhss.app.mygym.adapters.ExercisesAdapter
 import com.mhss.app.mygym.R
 import com.mhss.app.mygym.databinding.FragmentSubscriberPageBinding
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -69,7 +69,7 @@ class SubscriberPageFragment : Fragment() {
         }
     }
 
-    private fun getProgram(id: String) = CoroutineScope(Dispatchers.IO).launch {
+    private fun getProgram(id: String) = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users")
             .document(id)
             .collection("program")
@@ -106,7 +106,7 @@ class SubscriberPageFragment : Fragment() {
         binding.reactivateBtn.visibility = if (show) View.VISIBLE else View.GONE
     }
 
-    private fun removeUser(uid: String) = CoroutineScope(Dispatchers.IO).launch {
+    private fun removeUser(uid: String) = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users")
             .document(uid)
             .update(mapOf("gym" to "", "state" to "", "sub_end" to 0))
@@ -119,7 +119,7 @@ class SubscriberPageFragment : Fragment() {
         }
     }
 
-    private fun deleteProgramData(uid: String) = CoroutineScope(Dispatchers.IO).launch {
+    private fun deleteProgramData(uid: String) = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users")
             .document(uid)
             .collection("program")
@@ -130,7 +130,7 @@ class SubscriberPageFragment : Fragment() {
             }
     }
 
-    private fun deleteDocument(dId: String, itemId: String) = CoroutineScope(Dispatchers.IO).launch {
+    private fun deleteDocument(dId: String, itemId: String) = lifecycleScope.launch(Dispatchers.IO) {
         db.collection("users")
             .document(dId)
             .collection("program")
@@ -138,7 +138,7 @@ class SubscriberPageFragment : Fragment() {
             .delete()
     }
 
-    private fun reactivateUserSubscription(uid: String) = CoroutineScope(Dispatchers.IO).launch {
+    private fun reactivateUserSubscription(uid: String) = lifecycleScope.launch(Dispatchers.IO) {
         val calendar = Calendar.getInstance()
         calendar.add(Calendar.DAY_OF_YEAR, 29)
         val time = calendar.timeInMillis
